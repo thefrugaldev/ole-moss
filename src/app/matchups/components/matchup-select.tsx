@@ -15,7 +15,7 @@ interface MatchupSelectProps {
   onSelect: (e: string) => void;
 }
 
-const MatchupSelect: React.FC<MatchupSelectProps> = async ({
+const MatchupSelect: React.FC<MatchupSelectProps> = ({
   matchups,
   onSelect,
 }) => {

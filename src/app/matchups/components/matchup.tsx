@@ -11,17 +11,15 @@ export type Matchup = {
 };
 
 const Matchup: React.FC<{ matchups: Matchup[] }> = ({ matchups }) => {
-  const [matchup, setMatchup] = useState<Matchup>(matchups[0]);
-
-  const onMatchupSelect = (gameId: string) => {
-    // make fetch call via SWR to get matchup info
-    console.log(gameId);
-  };
+  const [gameId, setGameId] = useState<string>('');
 
   return (
     <>
-      <MatchupSelect matchups={matchups} onSelect={onMatchupSelect} />
-      <MatchupInfo matchup={matchup} />
+      <MatchupSelect
+        matchups={matchups}
+        onSelect={(value) => setGameId(value)}
+      />
+      <MatchupInfo gameId={gameId} />
     </>
   );
 };

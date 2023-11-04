@@ -1,5 +1,8 @@
 import { z } from 'zod';
 
+// example url:
+// https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard?dates=2023&week=1
+
 export const Scoreboard = z.object({
   events: z.array(
     z.object({
