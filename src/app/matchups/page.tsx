@@ -1,5 +1,5 @@
 import { Scoreboard } from '@/schemas/scoreboard';
-import GameSelect from './components/game-selector';
+import Matchup from './components/matchup';
 
 async function getScoreboard() {
   const res = await fetch(
@@ -23,12 +23,6 @@ async function getScoreboard() {
 export default async function Matchups() {
   const { events } = await getScoreboard();
 
-  // const allGames = Object.values(schedule).reduce((acc: any, day: any) => {
-  //   acc = acc.concat(day.games);
-
-  //   return acc;
-  // }, []);
-
   return (
     <main className="flex min-h-screen flex justify-center p-24">
       <div className="text-center text-sm">
@@ -36,7 +30,7 @@ export default async function Matchups() {
           Select a game from Week 10 below, or choose a different week here.
         </p>
         <div>
-          <GameSelect games={events} />
+          <Matchup matchups={events} />
         </div>
       </div>
     </main>

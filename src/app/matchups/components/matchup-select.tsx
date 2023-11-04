@@ -8,30 +8,28 @@ import {
   SelectLabel,
 } from '@/components/ui/select';
 import React from 'react';
+import { Matchup } from './matchup';
 
-type Game = {
-  date: string;
-  name: string;
-  id: string;
-  shortName: string;
-};
-
-interface GameSelectProps {
-  games: Game[];
+interface MatchupSelectProps {
+  matchups: Matchup[];
+  onSelect: (e: string) => void;
 }
 
-const GameSelect: React.FC<GameSelectProps> = async ({ games }) => {
+const MatchupSelect: React.FC<MatchupSelectProps> = async ({
+  matchups,
+  onSelect,
+}) => {
   return (
-    <Select>
+    <Select onValueChange={onSelect}>
       <SelectTrigger>
         <SelectValue placeholder="Select a matchup" />
         <SelectContent className="max-h-96">
           <SelectGroup>
             <SelectLabel>Matchups</SelectLabel>
-            {games.map((game) => {
+            {matchups.map((matchup) => {
               return (
-                <SelectItem key={game.id} value={game.id}>
-                  {game.name}
+                <SelectItem key={matchup.id} value={matchup.id}>
+                  {matchup.name}
                 </SelectItem>
               );
             })}
@@ -42,4 +40,4 @@ const GameSelect: React.FC<GameSelectProps> = async ({ games }) => {
   );
 };
 
-export default GameSelect;
+export default MatchupSelect;
