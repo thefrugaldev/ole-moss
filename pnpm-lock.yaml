@@ -19,6 +19,7 @@ specifiers:
   tailwindcss: ^3.3.0
   tailwindcss-animate: ^1.0.7
   typescript: ^5
+  zod: ^3.22.4
 
 dependencies:
   '@radix-ui/react-select': 2.0.0_wh7xiv6sbfr3hrvugl4gvagpl4
@@ -30,6 +31,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   tailwind-merge: 2.0.0
   tailwindcss-animate: 1.0.7_tailwindcss@3.3.5
+  zod: 3.22.4
 
 devDependencies:
   '@types/node': 20.8.10
@@ -3133,3 +3135,7 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+  /zod/3.22.4:
+    resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
+    dev: false

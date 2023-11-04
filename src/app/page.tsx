@@ -1,15 +1,10 @@
-import GameSelector from './components/game-selector';
+import Link from 'next/link';
 
-export default function Home() {
+export default function Matchups() {
   return (
     <main className="flex min-h-screen flex justify-center p-24">
       <div className="text-center text-sm">
-        <p>
-          Select a game from Week 10 below, or choose a different week here.
-        </p>
-        <div>
-          <GameSelector />
-        </div>
+        <Link href="/matchups">Go to Matchups</Link>
       </div>
     </main>
   );
