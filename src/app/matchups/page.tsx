@@ -25,13 +25,11 @@ export default async function Matchups() {
 
   return (
     <main className="flex min-h-screen flex justify-center p-24">
-      <div className="text-center text-sm">
+      <div className="text-center text-sm w-3/5">
         <p className="mb-5">
           Select a game from Week 10 below, or choose a different week here.
         </p>
-        <div>
-          <Matchup matchups={events} />
-        </div>
+        <Matchup matchups={events} />
       </div>
     </main>
   );
