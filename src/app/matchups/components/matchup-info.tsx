@@ -17,12 +17,14 @@ const MatchupInfo: React.FC<{ gameId: string }> = ({ gameId }) => {
 
   if (!data) return <div className="mt-10">Loading...</div>;
 
-  const { boxscore } = data;
+  const {
+    boxscore: { teams },
+  } = data;
 
   return (
     <div>
       <div className="flex my-10 justify-around">
-        {boxscore.teams.map((team) => {
+        {teams.map((team) => {
           return (
             <Image
               key={team.team.id}
@@ -35,7 +37,7 @@ const MatchupInfo: React.FC<{ gameId: string }> = ({ gameId }) => {
           );
         })}
       </div>
-      <StatsToggle />
+      <StatsToggle teams={teams} />
     </div>
   );
 };
