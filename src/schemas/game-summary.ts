@@ -1,3 +1,6 @@
+// example url
+// https://site.api.espn.com/apis/site/v2/sports/football/college-football/summary?event=401525546
+
 export interface GameSummary {
   boxscore: Boxscore;
 }

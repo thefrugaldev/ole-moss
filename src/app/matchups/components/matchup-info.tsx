@@ -4,6 +4,7 @@ import { useRequest } from '@/app/_hooks/useRequest';
 import { GameSummary } from '@/schemas/game-summary';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import Image from 'next/image';
+import StatsToggle from './stats-toggle';
 
 const endpoint =
   'https://site.api.espn.com/apis/site/v2/sports/football/college-football/summary';
@@ -19,19 +20,22 @@ const MatchupInfo: React.FC<{ gameId: string }> = ({ gameId }) => {
   const { boxscore } = data;
 
   return (
-    <div className="flex mt-10 space-x-4">
-      {boxscore.teams.map((team) => {
-        return (
-          <AspectRatio key={team.team.id} ratio={16 / 5} className="bg-muted">
+    <div>
+      <div className="flex my-10 justify-around">
+        {boxscore.teams.map((team) => {
+          return (
             <Image
+              key={team.team.id}
               src={team.team.logo}
               alt={`${team.team.displayName} logo`}
-              fill
+              width={100}
+              height={100}
               className="rounded-md object-cover"
             />
-          </AspectRatio>
-        );
-      })}
+          );
+        })}
+      </div>
+      <StatsToggle />
     </div>
   );
 };
