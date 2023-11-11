@@ -1,17 +1,20 @@
+// example url
+// https://site.api.espn.com/apis/site/v2/sports/football/college-football/summary?event=401525546
+
 export interface GameSummary {
   boxscore: Boxscore;
 }
 
-interface Boxscore {
+export interface Boxscore {
   teams: Team[];
 }
 
-interface Team {
+export interface Team {
   team: TeamInfo;
   statistics: Statistic[];
 }
 
-interface TeamInfo {
+export interface TeamInfo {
   id: string;
   uid: string;
   slug: string;
@@ -25,7 +28,7 @@ interface TeamInfo {
   logo: string;
 }
 
-interface Statistic {
+export interface Statistic {
   name: string;
   displayValue: string;
   label: string;
