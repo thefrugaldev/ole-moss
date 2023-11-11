@@ -1,11 +1,7 @@
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
+import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
 import { Statistic, Team } from '@/schemas/game-summary';
+import { AvatarFallback } from '@radix-ui/react-avatar';
 import React, { useEffect, useMemo } from 'react';
 
 type TeamStat = Statistic & {
@@ -41,25 +37,59 @@ const getStats = (teams: Team[]) => {
 
 const TeamStats: React.FC<{ teams: Team[] }> = ({ teams }) => {
   const teamStats = useMemo(() => getStats(teams), [teams]);
+  const teamOne = {
+    logo: teams[0].team.logo,
+    abbr: teams[0].team.abbreviation,
+  };
+  const teamTwo = {
+    logo: teams[1].team.logo,
+    abbr: teams[1].team.abbreviation,
+  };
 
   useEffect(() => {
     console.log('Team Stats Updated: ', teamStats);
   }, [teamStats]);
 
   return (
-    teamStats &&
-    teamStats.map((stat) => {
-      const teamStat = stat as TeamStat;
-      return (
-        <div key={teamStat.label} className="flex justify-between	">
-          <strong>{teamStat.label}:</strong>
-          <span>{teamStat.teamOneValue}</span>
-
-          <Separator orientation="vertical" />
-          <span>{teamStat.teamTwoValue}</span>
-        </div>
-      );
-    })
+    teamStats && (
+      <div className="grid grid-cols-3 gap-4">
+        {teamStats.map((stat) => {
+          const teamStat = stat as TeamStat;
+          return (
+            <div key={teamStat.label} className="bg-blue-50 p-4 rounded-md">
+              <div className="space-y-1">
+                <h4 className="text-sm font-medium leading-none">
+                  {teamStat.label}
+                </h4>
+              </div>
+              <Separator className="my-4" />
+              <div className="flex justify-around">
+                <div>
+                  <Avatar>
+                    <AvatarImage
+                      src={`${teamOne.logo}`}
+                      alt={`${teamOne.abbr} logo`}
+                    />
+                    <AvatarFallback>{teamOne.abbr}</AvatarFallback>
+                  </Avatar>
+                  {teamStat.teamOneValue}
+                </div>
+                <div>
+                  <Avatar>
+                    <AvatarImage
+                      src={`${teamTwo.logo}`}
+                      alt={`${teamTwo.abbr} logo`}
+                    />
+                    <AvatarFallback>{teamTwo.abbr}</AvatarFallback>
+                  </Avatar>
+                  {teamStat.teamTwoValue}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    )
   );
 };
 
