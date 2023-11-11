@@ -18,4 +18,7 @@ export const Scoreboard = z.object({
       week: z.object({ number: z.number() }),
     }),
   ),
+  week: z.object({
+    number: z.number(),
+  })
 });
