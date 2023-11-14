@@ -1,25 +1,34 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRequest } from '@/app/_hooks/useRequest';
 import { GameSummary } from '@/schemas/game-summary';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import Image from 'next/image';
 import StatsToggle from './stats-toggle';
+import useFullPlayerData from '@/app/_hooks/useFullPlayerData';
+import getFullPlayerData, { GameStats } from '@/lib/getFullPlayerData';
 
 const endpoint =
   'https://site.api.espn.com/apis/site/v2/sports/football/college-football/summary';
 
-const MatchupInfo: React.FC<{ gameId: string }> = ({ gameId }) => {
-  const { data } = useRequest<GameSummary>(`${endpoint}?event=${gameId}`);
+const MatchupInfo: React.FC<{ gameId: string, sport: string, league: string }> = ({ gameId, sport, league }) => {
+
+  const [playerData, setPlayerData ] = React.useState<GameStats[]>([])
+  const { data } = useRequest<GameSummary>(`${endpoint}?event=${gameId}`)
+
+  // const { data:testData } = useFullPlayerData(sport, league, data?.boxscore?.teams?.[0].team?.id)
+  useEffect(()=> {
+    getFullPlayerData({sport, league, teamId:data?.boxscore?.teams?.[0]?.team?.id}).then( (data) => setPlayerData( data?.data ??[]))
+  },[data?.boxscore?.teams, league, sport])
 
   if (gameId === '')
-    return <div className="mt-10">Choose a game from the list above</div>;
+    return <div className="mt-10">Choose a game from the list above</div>
 
-  if (!data) return <div className="mt-10">Loading...</div>;
+  if (!data) return <div className="mt-10">Loading...</div>
 
   const {
     boxscore: { teams },
-  } = data;
+  } = data
 
   return (
     <div>
@@ -37,9 +46,9 @@ const MatchupInfo: React.FC<{ gameId: string }> = ({ gameId }) => {
           );
         })}
       </div>
-      <StatsToggle teams={teams} />
+      <StatsToggle teams={teams} players={playerData} />
     </div>
   );
 };
 
-export default MatchupInfo;
+export default MatchupInfo

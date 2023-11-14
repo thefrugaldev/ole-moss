@@ -1,10 +1,10 @@
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
-import { Statistic, Team } from '@/schemas/game-summary';
+import { TeamStatistic, Team } from '@/schemas/game-summary';
 import { AvatarFallback } from '@radix-ui/react-avatar';
 import React, { useEffect, useMemo } from 'react';
 
-type TeamStat = Statistic & {
+type TeamStat = TeamStatistic & {
   teamOneValue: string;
   teamTwoValue: string;
 };
@@ -15,7 +15,7 @@ const getStats = (teams: Team[]) => {
   // Combine statistics with distinct "name" and "label"
   const combinedStatistics = teamStatisticsArrays
     .flat()
-    .reduce<Statistic[]>((acc, stat) => {
+    .reduce<TeamStatistic[]>((acc, stat) => {
       const existingStat = acc.find(
         (existing) =>
           existing.name === stat.name && existing.label === stat.label,

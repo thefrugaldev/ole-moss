@@ -12,6 +12,7 @@ export type Matchup = {
 
 const Matchup: React.FC<{ matchups: Matchup[] }> = ({ matchups }) => {
   const [gameId, setGameId] = useState<string>('');
+  const [{sport, league}, setSportLeage] = useState<{sport:string, league:string}>({sport: 'football', league: 'college-football'})
 
   return (
     <>
@@ -19,7 +20,7 @@ const Matchup: React.FC<{ matchups: Matchup[] }> = ({ matchups }) => {
         matchups={matchups}
         onSelect={(value) => setGameId(value)}
       />
-      <MatchupInfo gameId={gameId} />
+      <MatchupInfo gameId={gameId} sport={sport} league={league} />
     </>
   );
 };
