@@ -1,5 +1,5 @@
 import { Position } from "./depth-chart"
-import { ESPNImageRef, ESPNRef, GenericObject } from "./generic-types"
+import { ESPNLinkRef, ESPNRef, GenericObject } from "./generic-types"
 
 // URL
 // https://sports.core.api.espn.com/v2/sports/{sport}/leagues/{league}/seasons/{year}/athletes/{atheleteID}
@@ -27,9 +27,9 @@ export interface ESPNAthlete {
   birthCountry: BirthCountry
   college: ESPNRef
   slug: string
-  headshot: ESPNImageRef
+  headshot: ESPNLinkRef
   jersey: string
-  flag: ESPNImageRef
+  flag: ESPNLinkRef
   position: Position
   injuries: any[]
   linked: boolean
